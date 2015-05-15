@@ -1,0 +1,247 @@
+
+
+
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Odin's TicTacToe</title>
+<link rel= "font" href="4 DOGS.TTF">
+<style>
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: '4 DOGS';
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*End of reset
+*/
+/*MY CODE
+*/
+body{
+background:url("lex.dog.jpg");
+color:#333;
+background-size: cover;
+background-position: center center;
+background-attachment: fixed;
+
+}
+*{
+	font-family: '4 DOGS';
+}
+header{
+	margin-top: 50px;
+	font-size: 30px;
+	text-align: center;
+	color: #C0C0C0;
+}
+.tictacslot{
+	font-size: 96px;
+	width: 100px;
+	height:100px;
+	border: 1px solid white;
+	float: left;
+
+}
+
+#tictactoe{
+	width: 306px;
+	margin: 100px auto;
+	color: white;
+
+}
+
+#scoreholder{
+	fontsize: 96px;
+	display:block;
+
+
+}
+.score{
+	float:left;
+	width: 100px;
+	background-color: black;
+	border: 10px solid black;
+	color: white;
+
+
+}
+
+</style>
+
+
+</head>
+
+<body>
+<header>Tic Tac Squirrel!!!!</header>
+<div id="tictactoe">
+	<div class="tictacslot" id="sq1"></div>
+	<div class="tictacslot" id="sq2"></div>
+	<div class="tictacslot" id="sq3"></div>
+	<div class="tictacslot" id="sq4"></div>
+	<div class="tictacslot" id="sq5"></div>
+	<div class="tictacslot" id="sq6"></div>
+	<div class="tictacslot" id="sq7"></div>
+	<div class="tictacslot" id="sq8"></div>
+	<div class="tictacslot" id="sq9"></div>
+</div>
+
+<div id= "scoreholder">
+	<div class="score">
+		<div id= "X_score">0</div>
+	</div>
+	<div class="score">
+		<div id= "O_score">0</div>
+	</div>
+</div>
+<script type="application/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script type="application/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+<script type="text/javascript">
+   var winners = [];
+   winners['X']=0;
+   winners['O']=0;
+	var last_turn = "O";
+	$('.tictacslot').click(function(){
+		var found_winner=false;
+		// SET THE PROPER SYMBOL FOR THE BOX CLICKED
+		if (
+			$(this).html() != "X" && $(this).html() != "O"
+		){
+			if (
+				last_turn == "X"){
+				$(this).html('O');
+				last_turn = 'O';
+			}
+			else{
+				$(this).html('X');
+				last_turn = 'X';
+			}
+		}
+		// SET ALL VALUES FOR CHECKING TIME
+		var sq1=$("#sq1").html();
+		var sq2=$("#sq2").html();
+		var sq3=$("#sq3").html();
+		var sq4=$("#sq4").html();
+		var sq5=$("#sq5").html();
+		var sq6=$("#sq6").html();
+		var sq7=$("#sq7").html();
+		var sq8=$("#sq8").html();
+		var sq9=$("#sq9").html();
+		// START CHECKING IF THERE IS A WINNING CONFIGURATION
+		if((sq1=="X"&&sq2=="X"&&sq3=="X") || (sq1=="O"&&sq2=="O"&&sq3=="O") ){
+			winners[sq1]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq1=="X"&&sq5=="X"&&sq9=="X") || (sq1=="O"&&sq5=="O"&&sq9=="O") ){
+			winners[sq1]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq4=="X"&&sq5=="X"&&sq6=="X") || (sq4=="O"&&sq5=="O"&&sq6=="O") ){
+			winners[sq4]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq7=="X"&&sq8=="X"&&sq9=="X") || (sq7=="O"&&sq8=="O"&&sq9=="O") ){
+			winners[sq7]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq1=="X"&&sq4=="X"&&sq7=="X") || (sq1=="O"&&sq4=="O"&&sq7=="O") ){
+			winners[sq1]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq3=="X"&&sq5=="X"&&sq7=="X") || (sq3=="O"&&sq5=="O"&&sq7=="O") ){
+			winners[sq3]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq2=="X"&&sq5=="X"&&sq8=="X") || (sq2=="O"&&sq5=="O"&&sq8=="O") ){
+			winners[sq2]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		if((sq3=="X"&&sq6=="X"&&sq9=="X") || (sq3=="O"&&sq6=="O"&&sq9=="O") ){
+			winners[sq3]++;
+			alert("You the Top Dog!");
+			clearBoard();
+			found_winner=true;
+		}
+		$("#X_score").html(winners['X']);
+		$("#O_score").html(winners['O']);
+		
+		if(found_winner==false){
+			if(sq1 != "" && sq2 != "" && sq3 != "" && sq4 != "" && sq5 != "" && sq6 !=  "" && sq7 != "" && sq8 != "" && sq9 != "" ){
+			alert("Damn Cats!");
+			clearBoard();
+			}
+		}
+	});
+	function clearBoard(){
+		$("#sq1").html("");
+		$("#sq2").html("");
+		$("#sq3").html("");
+		$("#sq4").html("");
+		$("#sq5").html("");
+		$("#sq6").html("");
+		$("#sq7").html("");
+		$("#sq8").html("");
+		$("#sq9").html("");
+	}
+</script>
+</body>
+</html>
+
